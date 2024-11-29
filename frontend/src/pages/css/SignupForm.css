@@ -1,0 +1,171 @@
+/* Flex container to center the form */
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; 
+  height: 100vh; 
+  width: 100vw; 
+  background-color: rgba(229, 252, 255); 
+  padding: 20px; 
+  overflow: auto; 
+}
+
+/* Wrapper to allow scrolling */
+.form-wrapper {
+  width: 100%;
+  max-width: 800px;
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto; /* Scrollable for overflow content */
+  max-height: 100vh; 
+}
+
+/* Custom scrollbar styling */
+.form-wrapper::-webkit-scrollbar {
+  width: 6px;
+}
+.form-wrapper::-webkit-scrollbar-thumb {
+  background: #cfd8dc; /* Subtle thumb color */
+  border-radius: 3px;
+}
+.form-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #b0bec5; /* Slightly darker on hover */
+}
+
+/* Heading Styling */
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #2c3e50; /* Dark blue-gray for readability */
+  font-size: 1.8rem;
+  font-weight: 700; /* Slightly bolder */
+}
+
+/* Form group and input field styling */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+label {
+  font-weight: 600;
+  color: #444;
+  font-size: 1rem;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 1rem;
+  background-color: #f9f9f9;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+input:focus,
+select:focus {
+  border-color: #1e88e5; /* Blue focus outline */
+  outline: none;
+  background-color: #fff;
+}
+
+input::placeholder,
+select::placeholder {
+  color: #aaa;
+}
+
+/* Submit button styling */
+button.submit-button {
+  width: 50%;
+  padding: 14px;
+  background-color: #1e88e5; /* Blue button color */
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-top: 30px;
+}
+
+button.submit-button:hover {
+  background-color: #1565c0; /* Darker blue */
+  transform: scale(1.05); /* Slight scaling effect */
+}
+
+button.submit-button:active {
+  background-color: #0d47a1;
+}
+
+.error-notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #dc3545;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  font-size: 0.9rem;
+  z-index: 1000;
+  animation: fade-in 0.5s ease;
+}
+
+/* Fade-in animation for the error box */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* Responsive Design */
+@media (max-width: 768px) {
+  .form-wrapper {
+    padding: 20px;
+    max-height: 95vh; /* Allow better scrolling for smaller viewports */
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+  .error-notification {
+    font-size: 0.8rem; /* Smaller error text */
+    padding: 8px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-wrapper {
+    padding: 15px;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  button.submit-button {
+    font-size: 1rem;
+  }
+  .error-notification {
+    font-size: 0.7rem; /* Smaller error text for mobile */
+    bottom: 10px; /* Adjust position for smaller screens */
+    right: 10px;
+    padding: 6px 10px;
+  }
+}
+

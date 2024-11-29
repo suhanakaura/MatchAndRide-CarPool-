@@ -1,0 +1,301 @@
+/* Global reset and styles */
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+/* Parent container layout */
+.dashboard-container {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: row; /* Sidebar and map side-by-side by default */
+  height: 100vh; /* Full viewport height */
+  width: 100vw;  /* Full viewport width */
+  overflow: hidden; /* Prevents overflow */
+}
+
+/* Sidebar as a form */
+.sidebar {
+  width: 30%;
+  min-width: 300px;
+  padding: 20px;
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  border-right: 1px solid #ddd;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  overflow-y: auto;
+}
+
+.sidebar .form-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.sidebar .input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sidebar .input-group label {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.sidebar .input-group input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.sidebar .button-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.sidebar .button {
+  padding: 12px 20px;
+  font-size: 14px;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.sidebar .button:hover {
+  background-color: #0056b3;
+}
+
+.sidebar .info-text {
+  font-size: 14px;
+  margin-top: 10px;
+  color: #333;
+}
+
+/* Map container */
+.map-container {
+  flex: 1;
+  background-color: #e6e6e6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+  height: 100vh; /* Make sure the map takes up the full container height */
+}
+
+/* Driver List Styling */
+.driver-list-container {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  background-color: #f8f8f8;
+  max-height: 250px; /* Adjust for smaller screens */
+  overflow-y: auto;
+  border-radius: 8px;
+}
+
+.driver-list-container p {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* Individual Driver Item */
+.driver-item {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease;
+}
+
+.driver-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.driver-item strong {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.driver-item p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.driver-item .driver-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #555;
+}
+
+.driver-item .driver-info span {
+  display: inline-block;
+  margin-right: 15px;
+}
+
+.driver-item .driver-info .icon {
+  margin-right: 5px;
+}
+
+
+.driver-list-container {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  background-color: #f8f8f8;
+  max-height: 250px; /* Adjust for smaller screens */
+  overflow-y: auto;
+}
+
+/* Larger screens (e.g., tablets and above) */
+@media (min-width: 768px) {
+  .dashboard-container {
+      flex-direction: row; /* Place form and map side by side */
+  }
+
+  .sidebar {
+      width: 30%; /* Sidebar occupies 30% of the screen */
+      /* margin-right: 20px; Add space between form and map */
+      margin-bottom: 0; /* Remove bottom margin */
+  }
+
+  .map-container {
+      width: 70%; /* Map occupies the remaining 70% */
+      height: 100vh; /* Increase map height for larger screens */
+  }
+
+  .driver-list-container {
+      max-height: 300px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .sidebar {
+      width: 25%;
+  }
+
+  .map-container {
+      width: 75%;
+      height: 600px;
+  }
+
+  .driver-list-container {
+      max-height: 400px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .dashboard-container {
+      flex-direction: column;
+      overflow-y: auto;
+  }
+
+  .sidebar {
+      width: 100%;
+      border-right: none;
+      border-bottom: 1px solid #ddd;
+      height: auto;
+  }
+
+  .map-container {
+      width: 100%;
+      height: 60vh;
+      /* margin-top: 20px; */
+  }
+
+  body {
+      overflow-y: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+      font-size: 14px;
+      padding: 15px;
+      width: 100%;
+      border-right: none;
+      border-bottom: 1px solid #ddd;
+  }
+
+  .sidebar .form-title {
+      font-size: 20px;
+  }
+
+  .sidebar .input-group input {
+      font-size: 14px;
+      padding: 8px;
+  }
+
+  .sidebar .button {
+      padding: 10px 15px;
+      font-size: 12px;
+  }
+
+  .map-container {
+      width: 100%;
+      height: 50vh;
+      /* margin-top: 20px; */
+  }
+
+  body {
+      overflow-y: auto;
+  }
+}
+
+@media (max-width: 300px) {
+  .sidebar {
+      font-size: 12px;
+      padding: 10px;
+      height: auto;
+      width: 100%;
+  }
+
+  .sidebar .form-title {
+      font-size: 18px;
+  }
+
+  .sidebar .input-group input {
+      font-size: 12px;
+      padding: 6px;
+  }
+
+  .sidebar .button {
+      padding: 8px 12px;
+      font-size: 10px;
+  }
+
+  .map-container {
+      width: 100%;
+      height: 40vh;
+      margin-top: 10px;
+  }
+
+  .dashboard-container {
+      flex-direction: column;
+      height: auto;
+  }
+
+  body {
+      overflow-y: auto;
+  }
+}
