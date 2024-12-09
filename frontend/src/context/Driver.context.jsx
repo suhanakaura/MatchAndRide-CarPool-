@@ -1,5 +1,6 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { getRequest } from "../services/Service";
+import { AuthContext } from "./Auth.context";
 
 export const DriverContext = createContext();
 

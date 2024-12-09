@@ -173,7 +173,7 @@ const RiderDashboard = () => {
                 </ul>
               )}
               {!loading && !listError && driverList.length === 0 && (
-                <p>No drivers found for your route.</p>
+                <h3>No drivers found for your route.</h3>
               )}
             </div>
           )}

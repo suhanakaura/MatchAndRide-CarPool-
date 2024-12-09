@@ -4,11 +4,11 @@ import "../components/css/Navbar.css";
 import { AuthContext } from "../context/Auth.context";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false); // State for burger menu
+  const [isOpen, setIsOpen] = useState(false); 
   const navigate = useNavigate();
 
   const {submitLogout} = useContext(AuthContext)
-  // const {user} = localStorage.getItem('user')
+  const {user} = localStorage.getItem('user')
 
   return (
     <nav className="navbar">

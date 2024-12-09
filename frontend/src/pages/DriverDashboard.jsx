@@ -9,10 +9,6 @@ const DriverDashboard = () => {
   const { locErr, loc, submitLoc, setLoc } = useContext(AuthContext);
   const { isLoaded , displayOnClick,originRef,destRef} = useContext(MapContext);
   const [showRiderList, setShowRiderList] = useState(false);
-  const riders = [
-    { id: 1, name: "Rider 1", contact: "1234567890" },
-    { id: 2, name: "Rider 2", contact: "9876543210" },
-  ];
 
 
   const handlePlaceChanged = useCallback((autocomplete, field) => {

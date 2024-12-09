@@ -12,7 +12,7 @@ const verifyRoute = async (req, res, next) => {
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET_KEY);
     console.log("Decoded Token:", decodedToken);
 
-    const { userid, role } = decodedToken; // Extract userid from token
+    const { userid, role } = decodedToken; 
     req.userId = userid;
     req.userRole = role;
 
