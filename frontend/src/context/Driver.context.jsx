@@ -1,6 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { getRequest } from "../services/Service";
-import { AuthContext } from "./Auth.context";
 
 export const DriverContext = createContext();
 
@@ -8,23 +7,30 @@ export const DriverContextProvider = ({ children }) => {
   const [driverList, setDriverList] = useState([]); 
   const [listError, setListError] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  useEffect(() => {
+    console.log("Driver List:", driverList);
+    console.log("Loading:", loading);
+    console.log("Error:", listError);
+  }, [driverList, loading, listError]);
+  
   useEffect(() => {
     const fetchDriverList = async () => {
       try {
-        setLoading(true);
+        // setLoading(true);
         const response = await getRequest("driver/fetch-rider-detail"); 
         console.log(response);
         if (response.error) {
-          setListError(response.message); 
+          setListError(response.message);
+          setDriverList([]); 
         } else {
+          // setLoading(false)
           setDriverList(response); 
         }
       } catch (error) {
         setListError("An unexpected error occurred.");
-      } finally {
-        setLoading(false); 
-      }
+        setDriverList([]);
+        // setLoading(false)
+      } 
     };
 
     fetchDriverList();

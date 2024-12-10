@@ -54,8 +54,13 @@ export const getRequest = async(url)=>{
             },
             credentials:"include"
         })
-        const data = await response.json();
-        return data;
+        if (!response.ok) {
+            const errorResponse = await response.json();
+            return { error: true, message: errorResponse.message || "Something went wrong" };
+          }
+      
+          return await response.json();
+
     }
     catch(error){
         return { error: true, message: error.message || "An unexpected error occurred." };

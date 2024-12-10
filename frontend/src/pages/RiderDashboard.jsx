@@ -1,4 +1,10 @@
-import React, { useCallback, useContext, useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { GoogleMap, Marker, Autocomplete } from "@react-google-maps/api";
 import { MapContext } from "../context/Map.context";
 import "../pages/css/RD.css";
@@ -22,10 +28,9 @@ const RiderDashboard = () => {
   const { locErr, loc, submitLoc, setLoc } = useContext(AuthContext);
   const { driverList, listError, loading } = useContext(DriverContext);
 
-  const [showDrivers, setShowDrivers] = useState(false); 
-  const driverListRef = useRef(null); 
+  const [showDrivers, setShowDrivers] = useState(false);
+  const driverListRef = useRef(null);
 
-  
   const handlePlaceChanged = useCallback((autocomplete, field) => {
     const place = autocomplete.getPlace();
     const address = place.formatted_address || place.name;
@@ -36,12 +41,11 @@ const RiderDashboard = () => {
     }));
   }, []);
 
-  
   const handleSubmit = (e) => {
     e.preventDefault();
-    submitLoc(e); 
-    setShowDrivers(true); 
-    driverListRef.current?.scrollIntoView({ behavior: "smooth" }); 
+    submitLoc(e);
+    setShowDrivers(true);
+    driverListRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   if (!isLoaded) {
@@ -69,7 +73,10 @@ const RiderDashboard = () => {
                     window.autocompleteDestination = autocomplete;
                   }}
                   onPlaceChanged={() =>
-                    handlePlaceChanged(window.autocompleteDestination, "startLocation")
+                    handlePlaceChanged(
+                      window.autocompleteDestination,
+                      "startLocation"
+                    )
                   }
                 >
                   <input
@@ -153,33 +160,47 @@ const RiderDashboard = () => {
               </button>
             </form>
           ) : (
-            
             <div ref={driverListRef} className="driver-list-container">
-              {loading && <p>Loading drivers...</p>}
-              {!loading && listError && <p className="error-text">{listError}</p>}
+              {/* {loading && <p>Loading drivers...</p>} */}
+              {/* {!loading && listError && <p className="error-text">{listError}</p>} */}
               <p>Available Drivers</p>
-              {!loading && !listError && driverList.length > 0 && (
+              {!listError && driverList.length > 0 && (
                 <ul className="driver-list">
                   {driverList.map((driver, index) => (
                     <li key={index} className="driver-item">
-                      <strong>{driver.gender=='Male'? 'Mr' : 'Miss'} {driver.name} </strong><br /><br/>
-                      <strong>Journey from </strong> {driver.startLocation} <br />
-                      <strong>Heading to</strong> {driver.destination}<br/><br/>
-                      <strong>Contact number</strong> {driver.phoneNumber} <br /><br/>
-                      <strong>Car details</strong> {driver.make} <br /> {driver.licensePlateNumber} {driver.colour?", in color":""}<br/>
-                      <strong>Available seats</strong> {driver.seatsAvailable} <br />
+                      <strong>
+                        {driver.gender == "Male" ? "Mr" : "Miss"} {driver.name}{" "}
+                      </strong>
+                      <br />
+                      <br />
+                      <strong>Journey from </strong> {driver.startLocation}{" "}
+                      <br />
+                      <strong>Heading to</strong> {driver.destination}
+                      <br />
+                      <br />
+                      <strong>Contact number</strong> {driver.phoneNumber}{" "}
+                      <br />
+                      <br />
+                      <strong>Car details</strong> {driver.make} <br />{" "}
+                      {driver.licensePlateNumber}{" "}
+                      {driver.colour ? ", in color" : ""}
+                      <br />
+                      <strong>Available seats</strong> {driver.seatsAvailable}{" "}
+                      <br />
+                      <button className="button" type="submit">
+                        Book Ride
+                      </button>
                     </li>
                   ))}
                 </ul>
               )}
-              {!loading && !listError && driverList.length === 0 && (
+              {/* {!loading && !listError && driverList.length === 0 && (
                 <h3>No drivers found for your route.</h3>
-              )}
+              )} */}
             </div>
           )}
         </div>
 
-        
         <div className="map-container">
           <GoogleMap
             center={center || { lat: 0, lng: 0 }}

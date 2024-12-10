@@ -10,7 +10,10 @@ const DriverDashboard = () => {
   const { isLoaded , displayOnClick,originRef,destRef} = useContext(MapContext);
   const [showRiderList, setShowRiderList] = useState(false);
 
-
+  const riders = [
+    { id: 1, name: "Rider 1", contact: "1234567890" },
+    { id: 2, name: "Rider 2", contact: "9876543210" },
+  ];
   const handlePlaceChanged = useCallback((autocomplete, field) => {
     const place = autocomplete.getPlace();
     const address = place.formatted_address || place.name;
